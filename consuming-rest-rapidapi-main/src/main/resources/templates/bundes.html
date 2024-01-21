@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bundesliga Standings</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .container-fluid {
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid bg-dark text-white">
+    <h2>Bundesliga Standings</h2>
+</div>
+
+<table>
+    <tr>
+        <th>Equip</th>
+        <th>Partits jugats</th>
+        <th>Victòries</th>
+        <th>Derrotes</th>
+        <th>Empats</th>
+        <th>Gols a favor</th>
+        <th>Gols en contra</th>
+        <th>Diferència de gols</th>
+        <th>Punts</th>
+    </tr>
+
+    <!-- Primera fila con la clase "primera-fila" -->
+    <!-- Reemplaza 'clasePrimeraFila' con la clase real en tu aplicación -->
+    <tbody th:each="sp, status:${bundes}">
+    <tr>
+        <td>
+            <img th:src="${sp.team().logo()}" alt="Logo" width="40" height="40">
+            <span th:text="${sp.team().name()}"></span>
+        </td>
+        <td th:text="${sp.stats().gamesPlayed()}"></td>
+        <td th:text="${sp.stats().wins()}"></td>
+        <td th:text="${sp.stats().losses()}"></td>
+        <td th:text="${sp.stats().ties()}"></td>
+        <td th:text="${sp.stats().goalsFor()}"></td>
+        <td th:text="${sp.stats().goalsAgainst()}"></td>
+        <td th:text="${sp.stats().goalDifference()}"></td>
+        <td th:text="${sp.stats().points()}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
